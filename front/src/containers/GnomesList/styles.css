@@ -1,0 +1,59 @@
+.gnomesList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.gnomesList .singleGnome {
+  background-color: white;
+  display: flex;
+  border: 1px solid #e6e6e6;
+  margin: 5px;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 15%;
+  max-width: 15%;
+  box-sizing: border-box;
+}
+.gnomesList .singleGnome:hover {
+  background-color: red;
+}
+.gnomesList .singleGnome h1 {
+  min-height: 15%;
+  display: flex;
+  justify-content: center;
+  color: #4e555c;
+  font-size: 1em;
+}
+.gnomesList .singleGnome img {
+  margin: 0 auto;
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+.gnomesList .singleGnome ul {
+  max-width: 100%;
+  padding-left: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.gnomesList .singleGnome ul li {
+  display: flex;
+  justify-content: center;
+  margin: 3px;
+  display: inline;
+  color: #6c6969;
+  font-weight: 100;
+}
+.gnomesList .singleGnome p {
+  display: flex;
+  margin: 3px;
+  display: inline;
+  color: #6c6969;
+  font-weight: 100;
+}
+
+/*# sourceMappingURL=styles.css.map */
