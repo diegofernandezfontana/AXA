@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 
 import styles from './styles.css'
 
+import {connect} from 'react-redux'
+
+import {fetchGnomes} from '../../redux/actions/gnomesActions'
+
 class GnomesListContainer extends Component {
     constructor(props) {
         super(props)
@@ -10,19 +14,15 @@ class GnomesListContainer extends Component {
         }
     }
     componentDidMount() {
-        fetch('https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json')
-        .then(data => data.json())
-        .then(data => this.setState({ gnomesList: data }))
+        this.props.fetchGnomes()
     }
 
     render() {
-        console.log(this.state);
-
         return (
             <div>
                 <div className={styles.gnomesList}>
                     {
-                        this.state.gnomesList.length == 0 ? 'Loading' : this.state.gnomesList.Brastlewark.map(gnome => {
+                        this.props.gnomesList.gnomes.length == 0 ? 'Loading' : this.props.gnomesList.gnomes.Brastlewark.map(gnome => {
                             return (
                                 <div key={gnome.id} className={styles.singleGnome}>
                                     <h1> {gnome.name} </h1>
@@ -32,11 +32,11 @@ class GnomesListContainer extends Component {
                                         <ul> 
                                             {
                                                 gnome.professions.map(profession =>{ 
-                                                    return( <li className={styles.gnomeProfession}>{profession}</li>)
+                                                    return( <li key={profession} className={styles.gnomeProfession}>{profession}</li>)
                                                 })  
                                             }
                                         </ul>
-                                     : <p> No profession </p> 
+                                     : <ul> <li>No profession </li></ul> 
                                     }
                                 </div>
                             )
@@ -49,4 +49,20 @@ class GnomesListContainer extends Component {
     }
 }
 
-export default GnomesListContainer
+const mapStateToProps = (state) =>{
+    return {
+        gnomesList: state.gnomes
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchGnomes:function(){
+            dispatch(fetchGnomes())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GnomesListContainer)
+
+
