@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import GnomesListContainer from './GnomesList/GnomesListContainer'
+import SingleGnomeContainer from './SingleGnome/SingleGnomeContainer'
+import DisplayContainer from './DisplayContainer/DisplayContainer'
 import NavbarContainer from './Navbar/NavbarContainer'
+
 import { connect } from 'react-redux';
 
 class Main extends Component {
@@ -9,10 +12,16 @@ class Main extends Component {
         super(props);
     }
     render() {
+        
         return (
             <div>
-                <NavbarContainer/>                                                                                      
-                <GnomesListContainer/>
+
+                <NavbarContainer/>  
+                <Switch>
+                    <Route exact path="/Gnome/:id" component={SingleGnomeContainer}/>
+                    <Route exact path="/" component={DisplayContainer}/>
+                </Switch>
+
             </div>
         );
     }

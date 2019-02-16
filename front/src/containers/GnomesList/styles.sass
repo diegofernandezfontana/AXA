@@ -12,16 +12,15 @@ $darkGrey: #4e555c
         display: flex
         border: 1px solid $lightGrey
         margin: 5px
-        padding: 10px
         flex-direction: column
         justify-content: flex-start
         min-width: 15%
         max-width: 15%
         box-sizing: border-box
         transition-duration: 0.2s
-
+        border-radius: 5px
         &:hover
-            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4)
+            border: 1px solid $darkGrey
             transition-duration: 0.2s
 
         h1
@@ -33,10 +32,12 @@ $darkGrey: #4e555c
             font-size: 1em
         img
             margin: 0 auto
-            height: 100px
-            width: 100px
+            min-width: 99%
+            max-width: 100%
+            min-height: 150px
+            max-height: 150px
             object-fit: cover
-            border-radius: 100%
+            border-radius: 5px 5px 0px 0px
         ul
             max-width: 100%
             padding-left: 0px
