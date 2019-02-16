@@ -10,14 +10,17 @@ class GnomesListContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            gnomesList: []
+            gnomesList: [],
+            filterWord: ''
         }
     }
     componentDidMount() {
         this.props.fetchGnomes()
     }
+    
 
-    render() {
+    render() {  
+        console.log(this.props)
         return (
             <div>
                 <div className={styles.gnomesList}>
@@ -27,7 +30,6 @@ class GnomesListContainer extends Component {
                                 <div key={gnome.id} className={styles.singleGnome}>
                                     <h1> {gnome.name} </h1>
                                     <img src={gnome.thumbnail} alt="" />
-
                                     {gnome.professions.length >0 ? 
                                         <ul> 
                                             {

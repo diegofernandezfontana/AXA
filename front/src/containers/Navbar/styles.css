@@ -1,0 +1,50 @@
+body {
+  margin: 0px 0px 0px 0px;
+  background-color: #FAFAFA;
+}
+
+.navbarTop {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-bottom: 1px solid #d3d3d3;
+  margin-bottom: 10px;
+}
+.navbarTop nav {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  max-width: 90%;
+  margin-left: 5%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.navbarTop nav div {
+  display: flex;
+}
+.navbarTop nav .title {
+  align-self: flex-start;
+}
+.navbarTop nav .navForm {
+  display: flex;
+}
+.navbarTop a {
+  color: black;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: none;
+}
+.navbarTop form input {
+  padding: 5px;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px 0px 0px 3px;
+  min-width: 20%;
+}
+.navbarTop form button {
+  padding: 5px 10px 5px 10px;
+  color: #6c6c6c;
+  background-color: #E8E8E8;
+  border: 1px solid #d3d3d3;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -11,8 +11,7 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <NavbarContainer/>                
-                <h1>Welcome to Brastlewark</h1>
+                <NavbarContainer/>                                                                                      
                 <GnomesListContainer/>
             </div>
         );
@@ -25,6 +24,7 @@ function mapStateToProps(){
         
     }
 }
+
 function mapDispatchToProps(){
     return {
         
