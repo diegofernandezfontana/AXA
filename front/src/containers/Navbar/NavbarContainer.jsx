@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import {Link} from 'react-router-dom'
+
 import styles from './styles.css'
 
 class NavbarContainer extends Component {
@@ -26,13 +28,12 @@ class NavbarContainer extends Component {
     }
 
     render() {
-        console.log(this.state);
         
         return (
             <div className={styles.navbarTop}>
                 <nav>
                     <div className={styles.title}>
-                        <a href="">Brastlewark</a>
+                       <Link to="/"> Brastlewark</Link>
                     </div>
                     <div className={styles.navForm}>
                         <form onSubmit={this.handleSubmit}>

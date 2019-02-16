@@ -9,3 +9,13 @@ export const fetchGnomes = () => dispatch => {
         }) 
     )
 }
+
+export const selectGnome = (gnomeID) => {
+    console.log(gnomeID)
+    return dispatch => {
+        dispatch({
+            type: "SELECT_GNOME",
+            payload: gnomeID
+        })
+    }
+}
