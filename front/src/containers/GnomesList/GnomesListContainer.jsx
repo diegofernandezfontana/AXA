@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
-
-import styles from './styles.css'
-
 import {connect} from 'react-redux'
 
 import {fetchGnomes, selectGnome} from '../../redux/actions/gnomesActions'
 
+
+import GnomesList from '../../components/GnomesList'
+
 class GnomesListContainer extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            gnomesList: []
-        }
-
         this.handleClickGnome = this.handleClickGnome.bind(this)
     }
+
     componentDidMount() {
-        this.props.fetchGnomes()
+        if(this.props.gnomesList.gnomes.length == 0){
+            this.props.fetchGnomes()
+       }
     }
 
     handleClickGnome(gnomeID){
@@ -26,32 +25,17 @@ class GnomesListContainer extends Component {
     
 
     render() {  
+        let filteredGnomes = this.props.gnomesList.filteredGnomes;
+        
         return (
             <div>
-                <div className={styles.gnomesList}>
-                    {
-                        this.props.gnomesList.gnomes.length == 0 ? 'Loading' : this.props.gnomesList.gnomes.Brastlewark.map(gnome => {
-                            return (
-                                <div key={gnome.id} className={styles.singleGnome}  onClick={() => this.handleClickGnome(gnome.id)}>
-
-                                    <img src={gnome.thumbnail} alt="" />
-                                    <h1> {gnome.name} </h1>
-                                    {gnome.professions.length >0 ? 
-                                        <ul> 
-                                            {
-                                                gnome.professions.map(profession =>{ 
-                                                    return( <li key={profession} className={styles.gnomeProfession}>{profession}</li>)
-                                                })  
-                                            }
-                                        </ul>
-                                     : <ul> <li>No profession </li></ul> 
-                                    }
-                                </div>
-                            )
-                        })
-
-                    }
-                </div>
+                { 
+                    filteredGnomes.length > 0 ? 
+                        <GnomesList gnomesList={filteredGnomes} handleClickGnome={this.handleClickGnome} /> :
+                    this.props.gnomesList.gnomes.length > 0  ? 
+                        <GnomesList gnomesList={this.props.gnomesList.gnomes} handleClickGnome={this.handleClickGnome} />
+                    : <h2>Loading</h2>    
+                }
             </div>
         )
     }

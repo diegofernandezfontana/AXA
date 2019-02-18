@@ -29,7 +29,7 @@ body {
   display: flex;
 }
 .navbarTop a {
-  color: black;
+  color: #4e555c;
   font-size: 1.5em;
   font-weight: bold;
   text-decoration: none;
