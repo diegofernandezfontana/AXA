@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/diegofernandezfontana/AXA",
   "dependencies": {
+    "axios": "^0.18.0",
+    "css-loader": "^1.0.1",
+    "loadash": "^1.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
@@ -25,8 +28,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "style-loader": "^0.23.1",
-    "css-loader": "^1.0.1"
+    "style-loader": "^0.23.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

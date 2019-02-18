@@ -1,7 +1,9 @@
 
 const initialSate ={
     gnomes: [],
-    selectedGnome: -1
+    selectedGnome: {},
+    filteredGnomes: [],
+    gnomeFriends: []
 };
 
 export default (state = initialSate, action)=>{
@@ -11,8 +13,16 @@ export default (state = initialSate, action)=>{
         case "FETCH_GNOMES":
             return Object.assign({}, state, { gnomes: action.payload });
         case "SELECT_GNOME":
-            console.log(action.payload)
-            return Object.assign({}, state, { selectedGnome: action.payload });
+            return Object.assign({}, state, {  selectedGnome: state.gnomes[action.payload] });
+        
+        case "FILTER_GNOMES":
+            return Object.assign({}, state, {  filteredGnomes: action.payload });
+        
+        case "FETCH_FRIENDS":
+        console.log("REDUCER FETCH")
+            return Object.assign({}, state, {  gnomeFriends: action.payload });
+        
+        
         default:
             return state;
     }

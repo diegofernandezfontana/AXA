@@ -1,4 +1,5 @@
 $lightGrey : #e6e6e6
+$lightGreyHov: #c5c5c5
 $normalGrey: #6c6969
 $darkGrey: #4e555c
 
@@ -20,9 +21,9 @@ $darkGrey: #4e555c
         transition-duration: 0.2s
         border-radius: 5px
         &:hover
-            border: 1px solid $darkGrey
+            border: 1px solid $lightGreyHov
             transition-duration: 0.2s
-
+            cursor: pointer
         h1
             text-align: center
             min-height: 15%
@@ -32,26 +33,23 @@ $darkGrey: #4e555c
             font-size: 1em
         img
             margin: 0 auto
-            min-width: 99%
+            min-width: 99.9%
             max-width: 100%
             min-height: 150px
             max-height: 150px
             object-fit: cover
             border-radius: 5px 5px 0px 0px
         ul
-            max-width: 100%
-            padding-left: 0px
+            max-width: 95%
+            padding-left: 2%
             display: flex
             flex-wrap: wrap
             justify-content: center
+            margin-bottom: 10px
+            margin-top: 0px
             li
-                display: flex
-                justify-content: center
                 margin: 3px
                 display: inline
                 color: $normalGrey
                 font-weight: 100
-                &:hover
-                    text-decoration: underline
-                    cursor: pointer
       

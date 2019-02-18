@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import {Link} from 'react-router-dom'
+import _ from 'lodash'
+
+import { filterGnomes } from '../../redux/actions/gnomesActions'
 
 import styles from './styles.css'
 
@@ -16,19 +20,42 @@ class NavbarContainer extends Component {
     }
 
     handleChange(evt) {
+        console.log(this.state.filterWord)
         this.setState({
             filterWord: evt.target.value
         })
+        if(this.state.filterWord == ''){
+            () => this.handleSubmit()
+        }
+    }
+    filterItems(filterArr, word){
+        let filterItems = [];
+        filterArr.filter(gnome => {
+            if(gnome.age == parseInt(word)){
+                filterItems.push(gnome);
+            } else if(gnome.name.toLowerCase().indexOf(word.toLowerCase()) > -1){
+                filterItems.push(gnome);
+            } else if(gnome.professions.length > 0){
+                gnome.professions.map(profession => {
+                    if(profession.toLowerCase() == word.toLowerCase()){
+                        filterItems.push(gnome);
+                    }
+                });
+            }
+        })
+        return _.uniqBy(filterItems, 'id');
     }
 
     handleSubmit(evt) {
         evt.preventDefault();
-        console.log(this.state.filterWord);
-        
+     
+        let filteredGnomes = [];
+        filteredGnomes = this.filterItems(this.props.gnomesList, this.state.filterWord);
+        this.props.filterGnomes(filteredGnomes)
     }
 
     render() {
-        
+
         return (
             <div className={styles.navbarTop}>
                 <nav>
@@ -48,4 +75,21 @@ class NavbarContainer extends Component {
     }
 }
 
-export default NavbarContainer
+
+const mapStateToProps = (state) =>{
+    return {
+        gnomesList: state.gnomes.gnomes
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        filterGnomes:function(arrGnomes){
+            dispatch(filterGnomes(arrGnomes))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer)
+
+
