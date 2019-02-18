@@ -11,7 +11,7 @@ export class DisplayContainer extends Component {
     render() {
         return (
             <div>                                                                                    
-                <GnomesListContainer props={this.props}/>
+                <GnomesListContainer history={this.props.history}/>
             </div>
         )
     }

@@ -6,7 +6,7 @@ export default ({gnomesList, handleClickGnome}) => {
         <div>
             <div className={styles.gnomesList}>
                     {
-                        gnomesList.length == 0 ? 'Loading' : gnomesList.map(gnome => {
+                        gnomesList.length == 0 ? '<p>Loading... <p>' : gnomesList.map(gnome => {
                             return (
                                 <div key={gnome.id} className={styles.singleGnome}  onClick={() => handleClickGnome(gnome.id)}>
                                     <div>
