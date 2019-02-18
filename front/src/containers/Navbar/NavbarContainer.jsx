@@ -20,13 +20,9 @@ class NavbarContainer extends Component {
     }
 
     handleChange(evt) {
-        console.log(this.state.filterWord)
         this.setState({
             filterWord: evt.target.value
         })
-        if(this.state.filterWord == ''){
-            () => this.handleSubmit()
-        }
     }
     filterItems(filterArr, word){
         let filterItems = [];

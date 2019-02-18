@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import SingleGnome from '../../components/SingleGnome'
 
-import { fetchGnomeFriends, selectGnome} from '../../redux/actions/gnomesActions'
+import { fetchGnomeFriends, selectGnome, gnomesFriend, gnomeFriendsbyId, fetchGnomes, fetchGnomeByID} from '../../redux/actions/gnomesActions'
 
 import _ from 'lodash'
 
@@ -14,43 +14,45 @@ class SingleGnomeContainer extends Component {
 
         this.changeGnome = this.changeGnome.bind(this)
     }
-
-    componentDidMount(){
-        let arrayFriends = this.props.selectedGnome.friends
-        if(arrayFriends.length > 0){
-            this.searchFriends(arrayFriends, this.props.gnomesList)
-        } else{
-            this.props.fetchGnomeFriends([])
+    componentWillMount(){
+        console.log(this.props, 'willmount')
+        let url = this.props.match.url.split('/');
+        if(this.props.gnomesList.length == 0){
+            this.props.fetchGnomeByID(url[2])
+            this.props.fetchGnomes()
+            this.props.gnomeFriendsbyId(url[2])
+        }else{
+            this.props.gnomeFriendsbyId(url[2])
         }
     }
 
-    changeGnome(gnomeID, nextGnome){
+    componentWillUpdate(){
+        console.log(this.props.gnomeFriends)
+        if(this.props.gnomeFriends.length != 0 && this.props.gnomesList.length != 0){
+            this.props.gnomesFriend(this.props.gnomeFriends, this.props.gnomesList)
+
+        }
+    }
+
+    componentDidMount(){
+        let url = this.props.match.url.split('/');
+        this.props.fetchGnomeFriends(url[2])
+    }
+    
+    changeGnome(gnomeID){
         //When clicked on a friend, sets the selectedGnome to the new and sets the friends to the new gnome friends.
         this.props.selectGnome(gnomeID)
-        this.searchFriends(nextGnome.friends, this.props.gnomesList)
+        this.props.history.push('/Gnome/' + gnomeID)
+        this.props.gnomeFriendsbyId(gnomeID)
     }
-
-    searchFriends(friendsArray, gnomesList){
-        let arrFriends = []
-        _.filter(friendsArray, function(friend){
-            _.filter(gnomesList, function(gnome){
-                if(friend == gnome.name){
-                    arrFriends.push(gnome)
-                }
-            })
-        })
-        
-        this.props.fetchGnomeFriends(arrFriends)
-    }
-
+    
     render() {
         let selectedGnome = this.props.selectedGnome;
         let friendsArr = this.props.gnomeFriends;
-        
         return (
-
-            <SingleGnome selectedGnome={selectedGnome} friendsArr={friendsArr} changeGnome={this.changeGnome}/>
-           
+            <div>
+                <SingleGnome selectedGnome={selectedGnome} friendsArr={friendsArr} changeGnome={this.changeGnome}/>
+            </div>
         )
     }
 }
@@ -58,7 +60,9 @@ class SingleGnomeContainer extends Component {
 const mapStateToProps = (state) => ({
     selectedGnome: state.gnomes.selectedGnome,
     gnomesList: state.gnomes.gnomes,
-    gnomeFriends: state.gnomes.gnomeFriends
+    gnomeFriends: state.gnomes.gnomeFriends,
+    professions: state.gnomes.professions
+
 })
 
 const mapDispatchToProps = dispatch => {
@@ -66,9 +70,22 @@ const mapDispatchToProps = dispatch => {
         fetchGnomeFriends:function(friends){
             dispatch(fetchGnomeFriends(friends))
         },
-        selectGnome:function(friends){
-            dispatch(selectGnome(friends))
+        selectGnome:function(gnomeID){
+            dispatch(selectGnome(gnomeID))
         },
+        fetchGnomes:function(){
+            dispatch(fetchGnomes())
+        },
+        fetchGnomeByID:function(gnomeID){
+            dispatch(fetchGnomeByID(gnomeID))
+        },
+        gnomesFriend:function(arr,arrGnomes){
+            dispatch(gnomesFriend(arr, arrGnomes))
+        },
+        gnomeFriendsbyId:function(gnomeID){
+            dispatch(gnomeFriendsbyId(gnomeID))
+        }
+        
         
     }
 }

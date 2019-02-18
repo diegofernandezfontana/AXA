@@ -3,15 +3,15 @@
 }
 
 .container {
-  width: 1000px;
-  min-height: 700px;
+  min-width: 89.999%;
+  max-width: 90%;
   margin: 0 auto;
   display: flex;
 }
 .container .gnomeImgContainer {
   padding: 20px;
-  min-width: 300px;
-  max-width: 350px;
+  min-width: 30%;
+  max-width: 30%;
   object-fit: cover;
 }
 .container .gnomeImgContainer .imgGnome {
@@ -19,6 +19,7 @@
   max-width: 100%;
 }
 .container .gnomeDescription {
+  max-width: 65%;
   padding: 20px;
 }
 .container .gnomeDescription h1, .container .gnomeDescription p {
@@ -49,11 +50,28 @@
   color: #4e555c;
 }
 .container .gnomeDescription a {
-  color: blue;
+  color: #335e84;
   text-decoration: none;
 }
 .container .gnomeDescription a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 890px) {
+  .container .gnomeDescription p {
+    font-size: 1em;
+  }
+}
+@media (max-width: 600px) {
+  .container .gnomeDescription ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 500px) {
+  .container .gnomeDescription h1 {
+    font-size: 1.2em;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

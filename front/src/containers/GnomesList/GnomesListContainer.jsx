@@ -20,7 +20,7 @@ class GnomesListContainer extends Component {
 
     handleClickGnome(gnomeID){
         this.props.selectGnome(gnomeID)
-        this.props.props.history.push('/Gnome/' + gnomeID)
+        this.props.history.push('/Gnome/' + gnomeID)
     }
     
 
@@ -34,7 +34,7 @@ class GnomesListContainer extends Component {
                         <GnomesList gnomesList={filteredGnomes} handleClickGnome={this.handleClickGnome} /> :
                     this.props.gnomesList.gnomes.length > 0  ? 
                         <GnomesList gnomesList={this.props.gnomesList.gnomes} handleClickGnome={this.handleClickGnome} />
-                    : <h2>Loading</h2>    
+                    : <h2 style={{textAlign: "center", color: "#3f3f3f"}}>Loading...</h2>    
                 }
             </div>
         )

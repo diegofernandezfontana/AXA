@@ -3,7 +3,7 @@ import styles from '../containers/SingleGnome/styles.css'
 
 import {Link} from 'react-router-dom'
 
-export default ({selectedGnome, friendsArr , changeGnome}) => {
+export default ({selectedGnome, friendsArr , changeGnome}) => { 
     return (
         <div className={styles.container}>
         <div className={styles.gnomeImgContainer}>
@@ -18,7 +18,8 @@ export default ({selectedGnome, friendsArr , changeGnome}) => {
             <ul>
                 <p><b>Professions:</b> </p>
                 {
-                    selectedGnome.professions.length > 0 ? selectedGnome.professions.map((profession, idx) =>{
+
+                    selectedGnome.professions ? selectedGnome.professions.map((profession, idx) =>{
                         if(selectedGnome.professions.length != (idx + 1)){
                             return <li key={idx}>{profession},</li>
                         } else{
@@ -34,8 +35,8 @@ export default ({selectedGnome, friendsArr , changeGnome}) => {
                     friendsArr.length > 0 ? friendsArr.map((friend, idx) =>{
                         if(friendsArr.length != (idx + 1)){
                             return (
-                            <li key={friend.id} onClick={() => changeGnome(friend.id, friend)}>
-                                <Link to={ `/Gnome/${friend.id}`} >
+                            <li key={friend.id} onClick={() => changeGnome(friend.id)}>
+                                <Link to={ `/Gnome/2${friend.id}`} >
                                     { friend.name },  
                                 </Link>
                             </li>
